@@ -1,0 +1,21 @@
+{
+  "winscpPath": "C:\\Program Files (x86)\\WinSCP\\WinSCP.com",
+  "sftpHost": "127.0.0.1",
+  "sftpPort": 2222,
+  "sftpUsername": "cablemobil",
+  "sftpPassword": "CHANGE_ME",
+  "sftpRemoteDirectory": "/upload/facturas",
+  "filePattern": "*.*",
+  "localDownloadDirectory": ".\\downloads",
+  "stateFile": ".\\sent-files.json",
+  "logFile": ".\\logs\\app.log",
+  "smtpHost": "smtp.example.com",
+  "smtpPort": 587,
+  "smtpUseSsl": true,
+  "smtpUsername": "CHANGE_ME",
+  "smtpPassword": "CHANGE_ME",
+  "mailFrom": "it@example.com",
+  "mailToPurchases": "compras@example.com",
+  "mailToIT": "it@example.com",
+  "emailSubjectPrefix": "[Nimbus Cablemobil SFTP]"
+}
