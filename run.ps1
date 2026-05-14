@@ -207,7 +207,7 @@ function Read-SentState {
         return @($state)
     }
     catch {
-        throw "Could not read state file $StateFile: $($_.Exception.Message)"
+        throw "Could not read state file ${StateFile}: $($_.Exception.Message)"
     }
 }
 
