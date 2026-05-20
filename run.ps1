@@ -160,13 +160,13 @@ function Invoke-WinScpDownload {
         "open `"sftp://$username`:$password@$hostName`:$port/`" -hostkey=*",
         "cd $remoteDirectory",
         "lcd $localDirectory",
-        "get -preservetime $pattern",
+        "get -filemask=`"*>=2D`" -preservetime $pattern",
         "exit"
     )
 
     try {
         Set-Content -LiteralPath $scriptPath -Value $winscpScript -Encoding ASCII
-        Write-Log "Starting WinSCP download from ${hostName}:$port$($Config.sftpRemoteDirectory)."
+        Write-Log "Starting WinSCP download (Last 48h filter active) from ${hostName}:$port$($Config.sftpRemoteDirectory)."
 
         # /ini=nul avoids surprises from an interactive user's saved WinSCP profile.
         & $Config.winscpPath /ini=nul /script="$scriptPath" /log="$winscpLogPath" | ForEach-Object {
@@ -349,6 +349,10 @@ $Script:LogFilePath
 
 try {
     $Script:Config = Read-Config
+    
+    # MODIFICACIÓN TRÓPICA: Forzamos el filtro estricto para procesar únicamente archivos .pdf
+    $Script:Config.filePattern = "*.pdf"
+    
     Assert-RequiredConfig -Config $Script:Config
 
     $Script:LogFilePath = Resolve-ProjectPath -Path ([string]$Script:Config.logFile)
